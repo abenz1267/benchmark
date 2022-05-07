@@ -18,7 +18,7 @@ class Db: DbContext {
     public DbSet<Data> Datas => Set<Data>();
 }
 
-[Table("data")]
+[Table("posts")]
 record Data(int id) {
     public int id {get;set;} = id;
     public string title {get;set;} = default!;

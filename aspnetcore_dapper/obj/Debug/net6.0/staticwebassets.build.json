@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vFX8fHkHRZdVP05Ny7f4dvrSRuzHeX+8brAkV61yKZI=",
+  "Source": "aspnetcore_dapper",
+  "BasePath": "_content/aspnetcore_dapper",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

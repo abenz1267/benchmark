@@ -36,7 +36,7 @@ func main() {
 
 func test(db *pgxpool.Pool) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		rows, err := db.Query(context.Background(), "SELECT id,title,content FROM data;")
+		rows, err := db.Query(context.Background(), "SELECT id,title,content FROM posts;")
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
