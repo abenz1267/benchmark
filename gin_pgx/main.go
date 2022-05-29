@@ -30,8 +30,32 @@ func main() {
 	r := gin.New()
 
 	r.GET("/", test(db))
+	r.GET("/update/20", update(db))
 
-	log.Fatal(r.Run())
+	log.Fatal(r.Run(":8000"))
+}
+
+func update(db *pgxpool.Pool) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		res := make([]Post, 21)
+
+		for r := 1; r < 21; r++ {
+			err := db.QueryRow(context.Background(), "SELECT id,title,content FROM posts WHERE id=$1", r).Scan(&res[r].Id, &res[r].Title, &res[r].Content)
+			if err != nil {
+				c.AbortWithError(500, err)
+				return
+			}
+
+			res[r].Title = "testtitle"
+			_, err = db.Exec(context.Background(), "UPDATE posts SET title='testtitle' WHERE id=$1", res[r].Id)
+			if err != nil {
+				c.AbortWithError(500, err)
+				return
+			}
+		}
+
+		c.JSON(200, res)
+	}
 }
 
 func test(db *pgxpool.Pool) func(c *gin.Context) {
