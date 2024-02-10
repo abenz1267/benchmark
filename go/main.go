@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("GET /", func(w http.ResponseWriter, _ *http.Request) {
 		resp := struct {
 			Message string
 		}{
@@ -18,5 +18,5 @@ func main() {
 		json.NewEncoder(w).Encode(resp)
 	})
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe("localhost:8080", nil)
 }
